@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATSO GK Master — Grade 9 & 10</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --brand: #E8614A;
+            --brand-dark: #c94d38;
+            --cream: #FFF8F5;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--cream);
+            color: #1e293b;
+        }
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            border-color: rgba(232, 97, 74, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <!-- Header -->
+    <header class="bg-[#E8614A] pt-10 pb-12 px-6 relative overflow-hidden">
+        <div class="absolute top-[-20px] right-[-20px] w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold tracking-widest uppercase mb-4 border border-white/30">
+                    Syllabus Grade 9 & 10
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black text-white leading-tight font-display tracking-tight">
+                    CATSO <span class="text-amber-300">GK MASTER</span>
+                </h1>
+                <p class="text-white/80 mt-2 font-medium max-w-sm">
+                    Practice 192 official syllabus questions with challenging adaptive options.
+                </p>
+            </div>
+            
+            <div id="quiz-stats" class="hidden flex items-center gap-4">
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl text-white flex items-center gap-2 font-display font-bold">
+                    <span id="timer-val">00:00</span>
+                </div>
+                <div class="bg-white px-4 py-2 rounded-2xl text-[#E8614A] flex items-center gap-2 font-display font-bold shadow-lg">
+                    <span id="q-counter">0/0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto -mt-6 px-4 relative z-20">
+        
+        <!-- Start Screen -->
+        <div id="start-screen" class="space-y-6">
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-center">
+                    <div class="bg-[#FFF8F5] border border-[#E8614A]/10 p-5 rounded-3xl">
+                        <div class="text-2xl font-black text-slate-800 mb-1">192</div>
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Q's</div>
+                    </div>
+                    <div class="bg-[#FFF8F5] border border-[#E8614A]/10 p-5 rounded-3xl">
+                        <div class="text-2xl font-black text-slate-800 mb-1">12+</div>
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Topics</div>
+                    </div>
+                    <div class="bg-[#FFF8F5] border border-[#E8614A]/10 p-5 rounded-3xl">
+                        <div class="text-2xl font-black text-slate-800 mb-1">50+</div>
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">History</div>
+                    </div>
+                    <div class="bg-[#FFF8F5] border border-[#E8614A]/10 p-5 rounded-3xl">
+                        <div class="text-2xl font-black text-slate-800 mb-1">15+</div>
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Nobel</div>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold mb-6 text-slate-800 font-display">Practice Intensity</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8">
+                    <button class="int-btn py-4 rounded-2xl font-display font-bold text-xl border-2 border-slate-100 text-slate-400 hover:border-[#E8614A]/30 transition-all" data-n="10">10</button>
+                    <button class="int-btn py-4 rounded-2xl font-display font-bold text-xl border-2 border-slate-100 text-slate-400 hover:border-[#E8614A]/30 transition-all active-int bg-[#E8614A] text-white" data-n="20">20</button>
+                    <button class="int-btn py-4 rounded-2xl font-display font-bold text-xl border-2 border-slate-100 text-slate-400 hover:border-[#E8614A]/30 transition-all" data-n="50">50</button>
+                    <button class="int-btn py-4 rounded-2xl font-display font-bold text-xl border-2 border-slate-100 text-slate-400 hover:border-[#E8614A]/30 transition-all" data-n="100">100</button>
+                    <button class="int-btn py-4 rounded-2xl font-display font-bold text-xl border-2 border-slate-100 text-slate-400 hover:border-[#E8614A]/30 transition-all" data-n="-1">ALL</button>
+                </div>
+
+                <button onclick="startQuiz()" class="w-full bg-[#E8614A] hover:bg-[#c94d38] text-white font-display font-bold text-xl py-6 rounded-[2rem] shadow-2xl shadow-[#E8614A]/40 flex items-center justify-center gap-3 transition-all active:scale-95">
+                    START MASTER QUIZ
+                </button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-6">
+            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-[#E8614A] w-0 transition-all"></div>
+            </div>
+
+            <div class="glass-card rounded-[2.5rem] p-8 md:p-12 relative">
+                <div id="q-label" class="text-[#E8614A] font-display font-bold tracking-widest text-sm mb-4 uppercase opacity-60">QUESTION 1</div>
+                <h2 id="q-text" class="text-2xl md:text-3xl font-bold leading-tight mb-10 text-slate-800"></h2>
+                <div id="opts-container" class="grid gap-3"></div>
+                <button id="next-btn" onclick="nextQuestion()" class="hidden w-full mt-8 bg-[#E8614A] hover:bg-[#c94d38] text-white font-display font-bold text-lg py-5 rounded-2xl shadow-xl shadow-[#E8614A]/30 flex items-center justify-center gap-2">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="hidden space-y-6">
+            <div class="glass-card rounded-[2.5rem] p-10 text-center">
+                <div class="text-3xl font-black mb-2 text-slate-800 font-display">Performance Report</div>
+                
+                <div id="score-pct" class="text-8xl font-black text-[#E8614A] tracking-tighter my-6">0%</div>
+                
+                <div class="flex items-center justify-center gap-2 text-[#E8614A] font-bold mb-8 bg-[#E8614A]/5 py-2 px-4 rounded-full w-fit mx-auto">
+                    <span class="text-xl">⏱</span>
+                    <span id="final-time" class="font-display text-xl">00:00</span>
+                    <span class="text-[10px] uppercase tracking-widest opacity-60 ml-1">Time Taken</span>
+                </div>
+
+                <p id="score-text" class="text-slate-400 font-bold uppercase tracking-widest text-sm mb-10"></p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-10">
+                    <div class="bg-emerald-50 border border-emerald-100 p-6 rounded-3xl">
+                        <div id="res-correct" class="text-3xl font-black text-emerald-700">0</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-emerald-600">Success</div>
+                    </div>
+                    <div class="bg-rose-50 border border-rose-100 p-6 rounded-3xl">
+                        <div id="res-wrong" class="text-3xl font-black text-rose-700">0</div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-rose-600">Gaps</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="startQuiz()" class="flex-1 bg-[#E8614A] text-white py-5 rounded-2xl font-display font-bold text-lg hover:bg-[#c94d38]">Retry</button>
+                    <button onclick="goHome()" class="flex-1 bg-slate-100 text-slate-600 py-5 rounded-2xl font-display font-bold text-lg hover:bg-slate-200">Home</button>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-[2.5rem] p-8">
+                <h3 class="text-xl font-bold mb-6 font-display">Detailed Review</h3>
+                <div id="review-container" class="space-y-4"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const QUESTIONS = [
+            {"q": "Who was the primary architect of the 1973 Constitution of Pakistan?", "opts": ["Maulwi Tamizuddin Khan", "Zulfiqar Ali Bhutto", "Abdul Hafiz Pirzada", "Sheikh Rashid Ahmed"], "ans": 1},
+            {"q": "Which is the largest landlocked country in the world?", "opts": ["Mongolia", "Kazakhstan", "Chad", "Bolivia"], "ans": 1},
+            {"q": "In which year did the United Nations General Assembly adopt the Universal Declaration of Human Rights?", "opts": ["1945", "1948", "1949", "1950"], "ans": 1},
+            {"q": "Which city is known as the 'Financial Capital of Pakistan'?", "opts": ["Islamabad", "Lahore", "Karachi", "Faisalabad"], "ans": 2},
+            {"q": "What is the total number of electoral votes in the US Presidential election?", "opts": ["435", "535", "538", "270"], "ans": 2},
+            {"q": "Which country is known as the 'Land of the Midnight Sun'?", "opts": ["Finland", "Norway", "Iceland", "Greenland"], "ans": 1},
+            {"q": "Who was the first Muslim woman to serve as a judge in a US court?", "opts": ["Rashida Tlaib", "Carolyn Walker-Diallo", "Ilhan Omar", "Fatima Jinnah"], "ans": 1},
+            {"q": "Which is the longest river in Asia?", "opts": ["Yellow River", "Ganges", "Yangtze", "Mekong"], "ans": 2},
+            {"q": "What is the maximum strength of the Senate of Pakistan?", "opts": ["100", "104 (Transitioning to 96)", "112", "96"], "ans": 1},
+            {"q": "Which international organization's judicial branch is the International Court of Justice?", "opts": ["NATO", "United Nations", "European Union", "OIC"], "ans": 1},
+            {"q": "Who was the first Pakistani to receive the 'Nishan-e-Haider'?", "opts": ["Major Aziz Bhatti", "Captain Raja Sarwar", "Rashid Minhas", "Major Tufail Mohammad"], "ans": 1},
+            {"q": "Which is the highest mountain pass in Pakistan?", "opts": ["Khyber Pass", "Khunjerab Pass", "Bolan Pass", "Babusar Pass"], "ans": 1},
+            {"q": "Which continent is known as the 'Cradle of Mankind'?", "opts": ["Asia", "Africa", "Europe", "East Africa"], "ans": 1},
+            {"q": "Who was the first woman to win a Nobel Prize in two different scientific categories?", "opts": ["Mother Teresa", "Marie Curie", "Rosalind Franklin", "Irène Joliot-Curie"], "ans": 1},
+            {"q": "What is the name of the currency used in Russia?", "opts": ["Euro", "Ruble", "Rial", "Lev"], "ans": 1},
+            {"q": "Which city is the headquarters of the International Red Cross?", "opts": ["Paris", "Geneva", "Brussels", "The Hague"], "ans": 1},
+            {"q": "Which is the largest sea in the world by area?", "opts": ["Mediterranean Sea", "Philippine Sea", "Coral Sea", "Sargasso Sea"], "ans": 1},
+            {"q": "In which province is the archaeological site of 'Taxila' located?", "opts": ["Sindh", "Punjab", "KPK", "Potohar"], "ans": 1},
+            {"q": "Who wrote the famous political treatise 'The Prince'?", "opts": ["Plato", "Niccolò Machiavelli", "Aristotle", "Thomas Hobbes"], "ans": 1},
+            {"q": "Which is the largest producer of gold in the world?", "opts": ["South Africa", "China", "Australia", "Russia"], "ans": 1},
+            {"q": "What is the term of a judge of the International Court of Justice?", "opts": ["5 years", "7 years", "9 years", "12 years"], "ans": 2},
+            {"q": "Which city is famous for the 'Wazir Khan Mosque'?", "opts": ["Multan", "Lahore", "Peshawar", "Shahdara"], "ans": 1},
+            {"q": "Who was the first Secretary-General of the United Nations?", "opts": ["Dag Hammarskjold", "Trygve Lie", "U Thant", "Kurt Waldheim"], "ans": 1},
+            {"q": "Which is the largest cold desert in the world?", "opts": ["Gobi Desert", "Antarctica", "Arctic Polar Desert", "Atacama"], "ans": 1},
+            {"q": "What is the minimum age to become the President of Pakistan?", "opts": ["35 years", "45 years", "40 years", "50 years"], "ans": 1},
+            {"q": "Which country is known as the 'Land of Maple Leaf'?", "opts": ["Canada", "Norway", "USA", "New Zealand"], "ans": 0},
+            {"q": "Who founded the 'Aligarh Movement'?", "opts": ["Allama Iqbal", "Sir Syed Ahmed Khan", "Maulana Mohammad Ali Jauhar", "Nawab Mohsin-ul-Mulk"], "ans": 1},
+            {"q": "Which is the deepest ocean in the world?", "opts": ["Atlantic Ocean", "Pacific Ocean", "Indian Ocean", "Southern Ocean"], "ans": 1},
+            {"q": "What is the main source of electricity generation in Pakistan?", "opts": ["Hydropower", "Thermal", "Renewable", "Nuclear"], "ans": 1},
+            {"q": "Which international body was replaced by the United Nations in 1945?", "opts": ["League of Nations", "Warsaw Pact", "NATO", "SEATO"], "ans": 0},
+            {"q": "Who was the first female Governor of a province in Pakistan?", "opts": ["Benazir Bhutto", "Begum Ra'ana Liaquat Ali Khan", "Fatima Jinnah", "Farkhunda Jabeen"], "ans": 1},
+            {"q": "What is the capital of South Korea?", "opts": ["Incheon", "Seoul", "Busan", "Pyongyang"], "ans": 1},
+            {"q": "Which city of Pakistan is famous for the 'Tomb of Shah Rukn-e-Alam'?", "opts": ["Uch Sharif", "Multan", "Bahawalpur", "Sukkur"], "ans": 1},
+            {"q": "Which is the largest gulf in the world?", "opts": ["Persian Gulf", "Gulf of Mexico", "Gulf of Guinea", "Gulf of Aden"], "ans": 1},
+            {"q": "Who is known as the 'Father of Economics'?", "opts": ["John Keynes", "Adam Smith", "David Ricardo", "Milton Friedman"], "ans": 1},
+            {"q": "Which country is known as the 'Land of the Thunder Dragon'?", "opts": ["Nepal", "Bhutan", "Tibet", "Sikkim"], "ans": 1},
+            {"q": "In which year was the 'Baghdad Pact' (CENTO) signed?", "opts": ["1954", "1955", "1958", "1960"], "ans": 1},
+            {"q": "Which is the largest island in the world?", "opts": ["Australia", "Greenland", "Borneo", "New Guinea"], "ans": 1},
+            {"q": "Who wrote the famous historical work 'Muqaddimah'?", "opts": ["Al-Biruni", "Ibn Khaldun", "Ibn Battuta", "Al-Idrisi"], "ans": 1},
+            {"q": "What is the national flower of Pakistan?", "opts": ["Rose", "Jasmine", "Gul-e-Daudi", "Tulip"], "ans": 1},
+            {"q": "Which is the highest plateau in the world?", "opts": ["Pamir Plateau", "Tibetan Plateau", "Colorado Plateau", "Deccan Plateau"], "ans": 1},
+            {"q": "Which city is the administrative center of the European Union?", "opts": ["Strasbourg", "Luxembourg", "Brussels", "Frankfurt"], "ans": 2},
+            {"q": "Who was the first Muslim to win a Nobel Peace Prize?", "opts": ["Yasser Arafat", "Anwar Sadat", "Malala Yousafzai", "Abbe Ahmed"], "ans": 1},
+            {"q": "Which is the largest canal in the world?", "opts": ["Suez Canal", "Grand Canal (China)", "Panama Canal", "Corinth Canal"], "ans": 1},
+            {"q": "In which city was the 'All India Muslim League' founded in 1906?", "opts": ["Calcutta", "Lucknow", "Dhaka", "Aligarh"], "ans": 2},
+            {"q": "Which country is known as the 'Land of a Thousand Lakes'?", "opts": ["Sweden", "Norway", "Finland", "Canada"], "ans": 2},
+            {"q": "Who was the first woman to fly solo across the Atlantic Ocean?", "opts": ["Amelia Earhart", "Harriet Quimby", "Amy Johnson", "Beryl Markham"], "ans": 0},
+            {"q": "Which is the smallest ocean in the world?", "opts": ["Indian Ocean", "Arctic Ocean", "Southern Ocean", "Atlantic Ocean"], "ans": 1},
+            {"q": "What is the capital of Australia?", "opts": ["Sydney", "Melbourne", "Canberra", "Perth"], "ans": 2},
+            {"q": "Which Pakistani scientist is known as the 'Father of Pakistan's Nuclear Program'?", "opts": ["Dr. Abdus Salam", "Dr. Abdul Qadeer Khan", "Dr. Ishfaq Ahmad", "Dr. Samar Mubarakmand"], "ans": 1},
+            {"q": "Which is the largest city in the world by population (Metropolitan)?", "opts": ["Shanghai", "Tokyo", "Delhi", "Mumbai"], "ans": 1},
+            {"q": "Who is known as the 'Iron Lady' of British politics?", "opts": ["Theresa May", "Margaret Thatcher", "Queen Elizabeth II", "Nicola Sturgeon"], "ans": 1},
+            {"q": "Where is the 'National Library of Pakistan' located?", "opts": ["Karachi", "Lahore", "Islamabad", "Rawalpindi"], "ans": 2},
+            {"q": "What is the official name of the Pakistani currency?", "opts": ["Pakistani Dollar", "Pakistani Rupee", "Pak Rupee", "Paisa"], "ans": 1},
+            {"q": "Which country has the world's longest written constitution?", "opts": ["Canada", "India", "USA", "South Africa"], "ans": 1},
+            {"q": "Which is the largest sea in the world?", "opts": ["Mediterranean", "South China Sea", "Caribbean", "Bering Sea"], "ans": 1},
+            {"q": "Who was the first person to reach the South Pole?", "opts": ["Robert Falcon Scott", "Roald Amundsen", "Ernest Shackleton", "James Cook"], "ans": 1},
+            {"q": "What is the name of the official residence of the President of Pakistan?", "opts": ["Prime Minister House", "Aiwan-e-Sadr", "Governor House", "Islamabad Palace"], "ans": 1},
+            {"q": "Which is the most spoken language in the world by total number of speakers?", "opts": ["English", "Mandarin Chinese", "Spanish", "Hindi"], "ans": 0},
+            {"q": "Which city is famous for its 'Leaning Tower'?", "opts": ["Florence", "Pisa", "Rome", "Venice"], "ans": 1},
+            {"q": "What is the capital of South Africa (Administrative)?", "opts": ["Cape Town", "Pretoria", "Bloemfontein", "Johannesburg"], "ans": 1},
+            {"q": "Who was the architect of the Faisal Mosque?", "opts": ["Kamal-ud-din", "Vedat Dalokay", "Nayyar Ali Dada", "Yahya Merchant"], "ans": 1},
+            {"q": "Which is the largest freshwater lake in the world by surface area?", "opts": ["Tanganyika", "Lake Superior", "Lake Victoria", "Lake Huron"], "ans": 1},
+            {"q": "Which city in Pakistan is known as the 'City of Saints'?", "opts": ["Multan", "Uch Sharif", "Bahawalpur", "Sehwan"], "ans": 0},
+            {"q": "Who discovered the sea route to India in 1498?", "opts": ["Diaz", "Vasco da Gama", "Amerigo", "Columbus"], "ans": 1},
+            {"q": "Which is the largest railway workshop in Pakistan?", "opts": ["Rohri", "Mughalpura (Lahore)", "Rawalpindi", "Sukkur"], "ans": 1},
+            {"q": "What is the capital of Malaysia?", "opts": ["Putrajaya", "Kuala Lumpur", "Cyberjaya", "Malacca"], "ans": 1},
+            {"q": "Which country is known as the 'Land of the White Elephant'?", "opts": ["India", "Thailand", "Vietnam", "Laos"], "ans": 1},
+            {"q": "Who was the first Mughal Emperor?", "opts": ["Humayun", "Babur", "Timur", "Shah Jahan"], "ans": 1},
+            {"q": "Which is the largest planet in our Solar System?", "opts": ["Saturn", "Jupiter", "Neptune", "Uranus"], "ans": 1},
+            {"q": "What is the name of the Parliament of Japan?", "opts": ["Diet", "Cortes", "Majlis", "Duma"], "ans": 0},
+            {"q": "Which city is known as the 'Pearl of the Himalayas'?", "opts": ["Murree", "Kaghan", "Naran", "Shogran"], "ans": 1},
+            {"q": "Who was the first woman to win a Nobel Peace Prize?", "opts": ["von Suttner", "Addams", "Yousafzai", "Teresa"], "ans": 0},
+            {"q": "Which is the national flower of the United Kingdom?", "opts": ["Thistle", "Rose", "Daffodil", "Shamrock"], "ans": 1},
+            {"q": "What is the capital of New Zealand?", "opts": ["Auckland", "Wellington", "Christchurch", "Dunedin"], "ans": 1},
+            {"q": "Who wrote the famous book 'The Republic'?", "opts": ["Aristotle", "Plato", "Socrates", "Homer"], "ans": 1},
+            {"q": "Which is the largest diamond ever found in the world?", "opts": ["Excelsior", "Cullinan Diamond", "Hope Diamond", "Regent"], "ans": 1},
+            {"q": "Which city of Pakistan is famous for its 'Ajrak' and 'Sindhi Topi'?", "opts": ["Bhit Shah", "Hala", "Thatta", "Sujawal"], "ans": 1},
+            {"q": "Who was the first Prime Minister of Israel?", "opts": ["Ben-Gurion", "Sharett", "Golda Meir", "Dayan"], "ans": 0},
+            {"q": "Which is the largest hot desert in the world?", "opts": ["Arabian", "Sahara", "Kalahari", "Thar"], "ans": 1},
+            {"q": "What is the capital of Switzerland?", "opts": ["Zurich", "Bern", "Geneva", "Lausanne"], "ans": 1},
+            {"q": "Which Pakistani player won the British Open Squash title 10 consecutive times?", "opts": ["Jansher Khan", "Jahangir Khan", "Hashim Khan", "Qamar Zaman"], "ans": 1},
+            {"q": "Which is the largest stadium in Pakistan by seating capacity?", "opts": ["Gaddafi", "National Stadium Karachi", "Multan Stadium", "Arbab Niaz"], "ans": 1},
+            {"q": "What is the name of the first Pakistani woman to scale K2?", "opts": ["Samina Baig", "Naila Kiani", "Namira Salim", "Uzma Yousaf"], "ans": 1},
+            {"q": "Which city is known as the 'Venice of the North'?", "opts": ["London", "Amsterdam", "Bruges", "Hamburg"], "ans": 1},
+            {"q": "Who was the architect of the Minar-e-Pakistan?", "opts": ["Yahya Merchant", "Nasreddin Murat-Khan", "Nayyar Ali Dada", "M.A. Jinnah"], "ans": 1},
+            {"q": "Which is the largest man-made forest in Pakistan?", "opts": ["Juniper", "Changa Manga", "Lal Suhanra", "Scrub"], "ans": 1},
+            {"q": "What is the currency of Japan?", "opts": ["Yuan", "Yen", "Won", "Baht"], "ans": 1},
+            {"q": "Who was the first person to fly solo across the Atlantic Ocean?", "opts": ["Charles Lindbergh", "Amelia Earhart", "Wiley Post", "Earhart"], "ans": 0},
+            {"q": "Which city in Pakistan is famous for its 'Falooda' and 'Fish'?", "opts": ["Gujranwala", "Kasur", "Okara", "Sahiwal"], "ans": 1},
+            {"q": "What is the capital of Argentina?", "opts": ["Santiago", "Buenos Aires", "Cordoba", "Rosario"], "ans": 1},
+            {"q": "Who is known as the 'Father of History'?", "opts": ["Thucydides", "Herodotus", "Socrates", "Xenophon"], "ans": 1},
+            {"q": "Which is the largest peninsula in the world?", "opts": ["Indian", "Arabian Peninsula", "Iberian", "Balkan"], "ans": 1},
+            {"q": "In which year was the United Nations founded?", "opts": ["1944", "1946", "1945", "1948"], "ans": 2},
+            {"q": "Which city is known as the 'City of Love'?", "opts": ["Rome", "Paris", "Venice", "Verona"], "ans": 1},
+            {"q": "Who was the first woman to be the President of a country?", "opts": ["Sirimavo", "Isabel Martínez de Peron", "Vigdis", "Aquino"], "ans": 1},
+            {"q": "Which is the largest airline in the world by number of countries served?", "opts": ["Emirates", "Turkish Airlines", "Lufthansa", "Air France"], "ans": 1},
+            {"q": "What is the capital of Portugal?", "opts": ["Madrid", "Lisbon", "Porto", "Sintra"], "ans": 1},
+            {"q": "Who wrote the famous play 'Hamlet'?", "opts": ["Shakespeare", "William Shakespeare", "Marlowe", "Jonson"], "ans": 1},
+            {"q": "Which is the national fruit of Pakistan (Summer)?", "opts": ["Guava", "Mango", "Dates", "Peach"], "ans": 1},
+            {"q": "Which city is known as the 'City of Palaces'?", "opts": ["Jaipur", "Bahawalpur", "Udaipur", "Lahore"], "ans": 1},
+            {"q": "Who was the first scientist to propose the theory of gravity?", "opts": ["Galileo", "Isaac Newton", "Kepler", "Tesla"], "ans": 1},
+            {"q": "Which is the largest clock tower in Pakistan?", "opts": ["Sukkur", "Faisalabad Clock Tower", "Merewether", "Cunningham"], "ans": 1},
+            {"q": "What is the capital of Greece?", "opts": ["Sparta", "Athens", "Thessaloniki", "Patras"], "ans": 1},
+            {"q": "Who was the first woman to win a Nobel Prize in Economics?", "opts": ["Elinor Ostrom", "Claudia Goldin", "Esther Duflo", "Yousafzai"], "ans": 0},
+            {"q": "Which is the largest zoo in the world by land area?", "opts": ["Kruger", "San Diego Zoo Safari Park", "Berlin", "Bronx"], "ans": 1},
+            {"q": "What is the name of the national anthem of the United States?", "opts": ["America the Beautiful", "The Star-Spangled Banner", "God Bless America", "My Country"], "ans": 1},
+            {"q": "Which city is famous for its 'Soan Halwa'?", "opts": ["Multan", "Multan", "Sargodha", "Jhang"], "ans": 1},
+            {"q": "Who was the first woman to win a Nobel Prize in Chemistry?", "opts": ["Marie Curie", "Irène Curie", "Dorothy Hodgkin", "Ada Yonath"], "ans": 0},
+            {"q": "Which is the largest dam in the world by structural volume?", "opts": ["Itaipu", "Three Gorges Dam", "Tarbela Dam", "Guri"], "ans": 1},
+            {"q": "What is the capital of Ireland?", "opts": ["Cork", "Dublin", "Galway", "Limerick"], "ans": 1},
+            {"q": "Who was the first person to win a Nobel Prize in Literature?", "opts": ["Tagore", "Sully Prudhomme", "Kipling", "Mistral"], "ans": 1},
+            {"q": "Which is the national bird of the United States?", "opts": ["Eagle", "Bald Eagle", "Falcon", "Hawk"], "ans": 1},
+            {"q": "Which city is known as the 'City of Lights'?", "opts": ["Lahore", "Karachi", "Paris", "Vegas"], "ans": 1},
+            {"q": "Who was the first person to be awarded the Nobel Prize in Medicine?", "opts": ["Emil von Behring", "Koch", "Pasteur", "Fleming"], "ans": 0},
+            {"q": "Which is the largest lake in the world by water volume?", "opts": ["Superior", "Lake Baikal", "Caspian", "Victoria"], "ans": 1},
+            {"q": "What is the capital of Spain?", "opts": ["Barcelona", "Madrid", "Seville", "Valencia"], "ans": 1},
+            {"q": "Who was the first person to win a Nobel Prize in Peace?", "opts": ["Passy", "Henry Dunant", "Dunant", "Ducommun"], "ans": 1},
+            {"q": "Which is the national flower of India?", "opts": ["Marigold", "Lotus", "Rose", "Jasmine"], "ans": 1},
+            {"q": "What is the term length for the President of Pakistan?", "opts": ["4 years", "5 years", "6 years", "7 years"], "ans": 1},
+            {"q": "Which city is known as the 'City of Oranges' in Pakistan?", "opts": ["Haripur", "Sargodha", "Khanpur", "Taxila"], "ans": 1},
+            {"q": "Who was the first woman to fly solo across the Atlantic?", "opts": ["Amelia Earhart", "Quimby", "Johnson", "Coleman"], "ans": 0},
+            {"q": "Which is the largest cold desert in the world?", "opts": ["Gobi", "Antarctica", "Arctic", "Atacama"], "ans": 1},
+            {"q": "What is the capital of Scotland?", "opts": ["Glasgow", "Edinburgh", "Aberdeen", "Dundee"], "ans": 1},
+            {"q": "Who were the first people to climb Mount Everest?", "opts": ["Sir Edmund Hillary and Tenzing Norgay", "Tenzing", "Hillary", "Mallory"], "ans": 0},
+            {"q": "Which is the largest ocean in the world?", "opts": ["Atlantic", "Pacific Ocean", "Indian", "Southern"], "ans": 1},
+            {"q": "What is the capital of Thailand?", "opts": ["Phuket", "Bangkok", "Chiang Mai", "Krabi"], "ans": 1},
+            {"q": "Who was the first person to win a Nobel Prize in Physics?", "opts": ["Wilhelm Rontgen", "Einstein", "Curie", "Bohr"], "ans": 0},
+            {"q": "Which is the largest island in the world?", "opts": ["Madagascar", "Greenland", "Borneo", "Guinea"], "ans": 1},
+            {"q": "What is the capital of Mexico?", "opts": ["Cancun", "Mexico City", "Monterrey", "Puebla"], "ans": 1},
+            {"q": "Who was the first person to win a Nobel Prize in Chemistry?", "opts": ["Hoff", "Jacobus Henricus van't Hoff", "Marie Curie", "Rutherford"], "ans": 1},
+            {"q": "Which is the largest lake in Africa?", "opts": ["Lake Tanganyika", "Lake Victoria", "Lake Malawi", "Lake Chad"], "ans": 1},
+            {"q": "Who was the first woman to win a Nobel Peace Prize?", "opts": ["von Suttner", "Bertha von Suttner", "Malala", "Teresa"], "ans": 1},
+            {"q": "Which is the largest planet in our solar system?", "opts": ["Saturn", "Jupiter", "Uranus", "Neptune"], "ans": 1},
+            {"q": "What is the capital of Vietnam?", "opts": ["Ho Chi Minh", "Hanoi", "Da Nang", "Hue"], "ans": 1},
+            {"q": "Which is the largest sea in the world?", "opts": ["Mediterranean", "South China Sea", "Caribbean", "Sargasso"], "ans": 1},
+            {"q": "What is the capital of Peru?", "opts": ["Cusco", "Lima", "Arequipa", "Trujillo"], "ans": 1},
+            {"q": "Who was the first woman to win a Nobel Prize in Literature?", "opts": ["Selma Lagerlof", "Morrison", "Munro", "Buck"], "ans": 0},
+            {"q": "Which is the largest canyon in the world?", "opts": ["Fish River", "Grand Canyon", "Tara River", "Kali"], "ans": 1},
+            {"q": "What is the capital of Kenya?", "opts": ["Mombasa", "Nairobi", "Kisumu", "Nakuru"], "ans": 1},
+            {"q": "Who was the first person to win a Nobel Prize in Economics?", "opts": ["Frisch and Tinbergen", "Ragnar Frisch and Jan Tinbergen", "Samuelson", "Friedman"], "ans": 1},
+            {"q": "Which is the largest forest in the world?", "opts": ["Amazon", "Taiga", "Congo", "Daintree"], "ans": 1},
+            {"q": "What is the capital of Ukraine?", "opts": ["Kyiv", "Odessa", "Kyiv", "Lviv"], "ans": 2},
+            {"q": "Which is the largest waterfall in the world by water volume?", "opts": ["Iguazu", "Victoria Falls", "Niagara", "Angel"], "ans": 1},
+            {"q": "What is the capital of Poland?", "opts": ["Krakow", "Warsaw", "Lodz", "Wroclaw"], "ans": 1},
+            {"q": "Which is the largest lake in Pakistan?", "opts": ["Haleji", "Manchar Lake", "Keenjhar", "Saiful"], "ans": 1},
+            {"q": "What is the capital of Morocco?", "opts": ["Rabat", "Casablanca", "Rabat", "Fez"], "ans": 2},
+            {"q": "Which is the largest desert in Asia?", "opts": ["Gobi", "Thar", "Gobi", "Arabian"], "ans": 2},
+            {"q": "What is the capital of Hungary?", "opts": ["Budapest", "Debrecen", "Budapest", "Szeged"], "ans": 2},
+            {"q": "Which is the largest ocean in the world?", "opts": ["Atlantic", "Pacific Ocean", "Indian", "Southern"], "ans": 1},
+            {"q": "What is the capital of Austria?", "opts": ["Vienna", "Salzburg", "Vienna", "Innsbruck"], "ans": 2},
+            {"q": "Which is the largest peninsula in the world?", "opts": ["Arabian", "Indian", "Arabian Peninsula", "Iberian"], "ans": 2},
+            {"q": "What is the capital of Finland?", "opts": ["Helsinki", "Turku", "Helsinki", "Tampere"], "ans": 2},
+            {"q": "Which is the largest mountain range in the world?", "opts": ["Andes", "Himalayas", "Andes", "Rockies"], "ans": 2},
+            {"q": "What is the capital of Sweden?", "opts": ["Stockholm", "Gothenburg", "Stockholm", "Malmo"], "ans": 2},
+            {"q": "Which is the largest lake in the world by surface area?", "opts": ["Caspian", "Baikal", "Superior", "Caspian Sea"], "ans": 3},
+            {"q": "What is the capital of Norway?", "opts": ["Oslo", "Bergen", "Oslo", "Stavanger"], "ans": 2},
+            {"q": "Which is the largest island in the Mediterranean Sea?", "opts": ["Sicily", "Cyprus", "Sicily", "Sardinia"], "ans": 2},
+            {"q": "What is the capital of Denmark?", "opts": ["Copenhagen", "Aarhus", "Copenhagen", "Odense"], "ans": 2},
+            {"q": "Which is the largest waterfall in the world by height?", "opts": ["Angel", "Victoria", "Angel Falls", "Niagara"], "ans": 2},
+            {"q": "What is the capital of Belgium?", "opts": ["Brussels", "Antwerp", "Brussels", "Ghent"], "ans": 2},
+            {"q": "Which is the largest hot desert in Africa?", "opts": ["Sahara", "Kalahari", "Sahara", "Namib"], "ans": 2},
+            {"q": "What is the capital of the Czech Republic?", "opts": ["Prague", "Brno", "Prague", "Ostrava"], "ans": 2},
+            {"q": "Which is the largest mountain peak in Pakistan?", "opts": ["K2", "Nanga Parbat", "K2", "Broad"], "ans": 2},
+            {"q": "What is the capital city of Pakistan?", "opts": ["Islamabad", "Karachi", "Islamabad", "Lahore"], "ans": 2},
+            {"q": "Who is considered the 'National Poet of Pakistan'?", "opts": ["Iqbal", "Allama Iqbal", "Muhammad Iqbal", "Faiz"], "ans": 1},
+            {"q": "Which city is known as the 'City of Textiles' in Pakistan?", "opts": ["Faisalabad", "Karachi", "Faisalabad", "Multan"], "ans": 2},
+            {"q": "Who was the first female Prime Minister of Pakistan?", "opts": ["Bhutto", "Fatima", "Benazir Bhutto", "Sherry"], "ans": 2},
+            {"q": "Which is the national sport of Pakistan?", "opts": ["Hockey", "Cricket", "Field Hockey", "Squash"], "ans": 2},
+            {"q": "In which year did Pakistan become a Nuclear Power?", "opts": ["1998", "1974", "1988", "1998"], "ans": 3},
+            {"q": "What is the national animal of Pakistan?", "opts": ["Markhor", "Lion", "Markhor", "Tiger"], "ans": 2},
+            {"q": "Which city is famous for the 'Khyber Pass'?", "opts": ["Peshawar", "Quetta", "Peshawar", "Mardan"], "ans": 2},
+            {"q": "Who was the first Governor General of Pakistan?", "opts": ["Jinnah", "Liaquat", "Muhammad Ali Jinnah", "Nazimuddin"], "ans": 2},
+            {"q": "Which is the largest province of Pakistan by population?", "opts": ["Punjab", "Sindh", "Punjab", "Balochistan"], "ans": 2},
+            {"q": "What is the name of the national anthem of Pakistan?", "opts": ["Taranah", "Dil Dil", "Qaumi Taranah", "Pak Sarzamin"], "ans": 2},
+            {"q": "Which city is the capital of Balochistan?", "opts": ["Quetta", "Gwadar", "Quetta", "Kalat"], "ans": 2},
+            {"q": "Who founded the Edhi Foundation?", "opts": ["Edhi", "Bilquis", "Abdul Sattar Edhi", "M.A. Jinnah"], "ans": 2},
+            {"q": "Which is the largest desert in Pakistan?", "opts": ["Thar", "Thal", "Thar", "Cholistan"], "ans": 2}
+        ];
+
+        let selectedCount = 20;
+        let currentIdx = 0;
+        let score = 0;
+        let questions = [];
+        let userAnswers = [];
+        let timerSeconds = 0;
+        let timerInterval = null;
+
+        document.querySelectorAll('.int-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.int-btn').forEach(b => b.classList.remove('bg-[#E8614A]', 'text-white'));
+                btn.classList.add('bg-[#E8614A]', 'text-white');
+                selectedCount = parseInt(btn.dataset.n);
+            });
+        });
+
+        function shuffle(arr) {
+            return arr.sort(() => Math.random() - 0.5);
+        }
+
+        function formatTime(s) {
+            const m = Math.floor(s / 60).toString().padStart(2, '0');
+            const sec = (s % 60).toString().padStart(2, '0');
+            return m + ':' + sec;
+        }
+
+        function startQuiz() {
+            const pool = shuffle([...QUESTIONS]);
+            const count = selectedCount === -1 ? QUESTIONS.length : selectedCount;
+            questions = pool.slice(0, count).map(q => {
+                const correctVal = q.opts[q.ans];
+                const shuffledOpts = shuffle([...q.opts]);
+                return {
+                    q: q.q,
+                    opts: shuffledOpts,
+                    ans: shuffledOpts.indexOf(correctVal)
+                };
+            });
+
+            currentIdx = 0;
+            score = 0;
+            userAnswers = [];
+            timerSeconds = 0;
+            
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('quiz-stats').classList.remove('hidden');
+            
+            startTimer();
+            renderQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timerSeconds++;
+                document.getElementById('timer-val').textContent = formatTime(timerSeconds);
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIdx];
+            document.getElementById('q-label').textContent = `QUESTION ${currentIdx + 1}`;
+            document.getElementById('q-text').textContent = q.q;
+            document.getElementById('q-counter').textContent = `${currentIdx + 1}/${questions.length}`;
+            document.getElementById('progress-bar').style.width = ((currentIdx / questions.length) * 100) + '%';
+            
+            const container = document.getElementById('opts-container');
+            container.innerHTML = '';
+            
+            q.opts.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = "group flex items-center gap-4 text-left p-6 rounded-2xl border-2 border-slate-100 hover:border-[#E8614A]/20 transition-all bg-white text-slate-600";
+                btn.innerHTML = `
+                    <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-100 group-hover:bg-[#E8614A]/10 group-hover:text-[#E8614A] font-bold">${String.fromCharCode(65 + i)}</span>
+                    <span class="font-medium text-lg">${opt}</span>
+                `;
+                btn.onclick = () => selectAnswer(i, btn);
+                container.appendChild(btn);
+            });
+            
+            document.getElementById('next-btn').classList.add('hidden');
+        }
+
+        function selectAnswer(i, btn) {
+            const q = questions[currentIdx];
+            const alreadyAnswered = userAnswers.length > currentIdx;
+            if (alreadyAnswered) return;
+
+            const correct = i === q.ans;
+            if (correct) score++;
+            userAnswers.push({ chosen: i, correct });
+
+            document.querySelectorAll('#opts-container button').forEach((b, idx) => {
+                b.classList.remove('border-[#E8614A]/20');
+                if (idx === i) {
+                    b.classList.add('border-[#E8614A]', 'bg-[#E8614A]/5', 'text-[#E8614A]');
+                    b.querySelector('span:first-child').classList.add('bg-[#E8614A]', 'text-white');
+                }
+            });
+
+            document.getElementById('next-btn').classList.remove('hidden');
+            document.getElementById('next-btn').textContent = currentIdx === questions.length - 1 ? 'Finish' : 'Next Question';
+        }
+
+        function nextQuestion() {
+            if (currentIdx < questions.length - 1) {
+                currentIdx++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            clearInterval(timerInterval);
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            
+            document.getElementById('final-time').textContent = formatTime(timerSeconds);
+
+            const pct = Math.round((score / questions.length) * 100);
+            document.getElementById('score-pct').textContent = pct + '%';
+            document.getElementById('score-text').textContent = `${score} / ${questions.length} Correct Answers`;
+            document.getElementById('res-correct').textContent = score;
+            document.getElementById('res-wrong').textContent = questions.length - score;
+            
+            const review = document.getElementById('review-container');
+            review.innerHTML = '';
+            questions.forEach((q, i) => {
+                const ua = userAnswers[i];
+                const div = document.createElement('div');
+                div.className = `p-6 rounded-3xl border-l-8 ${ua.correct ? 'bg-emerald-50 border-emerald-400' : 'bg-rose-50 border-rose-400'}`;
+                div.innerHTML = `
+                    <div class="font-bold text-slate-800 mb-2">${i+1}. ${q.q}</div>
+                    <div class="text-sm">
+                        <div class="text-emerald-700 font-bold">Correct: ${q.opts[q.ans]}</div>
+                        ${!ua.correct ? `<div class="text-rose-700 font-bold">Your Choice: ${q.opts[ua.chosen]}</div>` : ''}
+                    </div>
+                `;
+                review.appendChild(div);
+            });
+        }
+
+        function goHome() {
+            document.getElementById('start-screen').classList.remove('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-stats').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
